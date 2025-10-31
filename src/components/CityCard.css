@@ -1,0 +1,303 @@
+/* src/components/CityCard.css */
+.city-card {
+  background: #383b47;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: #ffffff;
+  /* max-width: 85%; */
+}
+
+.city-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Top Section with 2 Columns */
+.card-top-section {
+  position: relative;
+  min-height: 180px;
+  overflow: hidden;
+}
+
+.top-section-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/cloudy-weather-wallpaper.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.top-section-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Left Column - City Info */
+.city-info-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.city-header {
+  margin-bottom: 0;
+}
+
+.city-info {
+  flex: 1;
+}
+
+.city-name {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.city-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.city-time {
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
+.city-condition {
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Right Column - Temperature Info */
+.temperature-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+
+.temperature-section {
+  text-align: right;
+}
+
+.main-temperature {
+  font-size: 3rem;
+  font-weight: 200;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.temperature-range {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
+.temperature-range span {
+  line-height: 1.4;
+}
+/* Close Button - Absolute positioned */
+.remove-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.25rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
+
+.remove-btn:hover {
+  color: #ffffff;
+  background: transparent;
+  transform: none;
+}
+
+/* Bottom Section - 3 Columns */
+.card-bottom-section {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  flex: 1;
+}
+
+.bottom-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  text-align: left;
+}
+
+.bottom-column:nth-child(2) {
+  text-align: center;
+  border-left: 1px solid #999999;
+  border-right: 1px solid #999999;
+  padding: 0 1rem;
+}
+
+.detail-item {
+  font-size: 0.875rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+/* Action Buttons */
+.card-actions {
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.view-btn {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.view-btn:hover {
+  background: #3182ce;
+}
+
+.refresh-btn {
+  padding: 0.75rem 1rem;
+  background: white;
+  color: #4299e1;
+  border: 1px solid #4299e1;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.refresh-btn:hover {
+  background: #4299e1;
+  color: white;
+}
+
+/* Loading State */
+.loading-state {
+  padding: 2rem;
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .top-section-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  
+  .temperature-column {
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .temperature-section {
+    text-align: left;
+  }
+  
+  .card-bottom-section {
+    padding: 1.25rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .bottom-column:nth-child(2) {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    padding: 1rem 0;
+    text-align: left;
+  }
+  
+  .main-temperature {
+    font-size: 2rem;
+  }
+  
+  .city-name {
+    font-size: 1.125rem;
+  }
+  
+  .cities-grid-two-column {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 0;
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-top-section {
+    min-height: 160px;
+  }
+  
+  .top-section-content {
+    padding: 1rem;
+  }
+  
+  .card-bottom-section {
+    padding: 1rem;
+  }
+  
+  .remove-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .card-actions {
+    flex-direction: column;
+  }
+  
+  .cities-grid-two-column {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

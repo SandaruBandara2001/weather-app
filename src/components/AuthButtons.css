@@ -1,0 +1,244 @@
+/* AuthButtons.css */
+.auth-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f4f6;
+  border-top: 2px solid #388ee7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+
+.user-email {
+  font-size: 12px;
+  color: #718096;
+  line-height: 1.2;
+}
+
+/* Button Styles */
+.login-btn, .logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #388ee7 0%, #2c5aa0 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(56, 142, 231, 0.3);
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 142, 231, 0.4);
+  background: linear-gradient(135deg, #2c5aa0 0%, #388ee7 100%);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.9);
+  color: #e53e3e;
+  border: 1px solid rgba(229, 62, 62, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+  background: #e53e3e;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+/* Icons */
+.login-icon, .logout-icon {
+  transition: transform 0.3s ease;
+}
+
+.login-btn:hover .login-icon {
+  transform: translateX(2px);
+}
+
+.logout-btn:hover .logout-icon {
+  transform: translateX(2px);
+}
+
+/* Ripple Effect */
+.login-btn::before, .logout-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.login-btn:hover::before, .logout-btn:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-container {
+    gap: 12px;
+    padding: 6px;
+  }
+  
+  .user-details {
+    display: none;
+  }
+  
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .avatar-placeholder {
+    font-size: 14px;
+  }
+  
+  .login-btn, .logout-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .login-icon, .logout-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    gap: 8px;
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .login-btn, .logout-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  .login-icon, .logout-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .auth-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .user-name {
+    color: #f7fafc;
+  }
+  
+  .user-email {
+    color: #cbd5e0;
+  }
+  
+  .logout-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fc8181;
+    border-color: rgba(252, 129, 129, 0.3);
+  }
+  
+  .logout-btn:hover {
+    background: #e53e3e;
+    color: white;
+  }
+}

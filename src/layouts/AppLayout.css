@@ -1,0 +1,194 @@
+/* AppLayout.css */
+.app-shell {
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Header Styles - Sticky */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Styles */
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.app-brand:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.brand-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  animation: bounce 3s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
+
+.brand-text {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.5px;
+}
+
+/* Main Content */
+.app-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  min-height: calc(100vh - 120px);
+}
+
+/* App Actions */
+.app-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .header-content {
+    /* flex-direction: column; */
+    gap: 1rem;
+  }
+  
+  .app-brand {
+    padding: 6px 12px;
+  }
+  
+  .brand-icon {
+    font-size: 1.75rem;
+  }
+  
+  .brand-text {
+    font-size: 1.5rem;
+  }
+  
+  .app-main {
+    min-height: calc(100vh - 140px);
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 0.5rem;
+  }
+  
+  .app-brand {
+    gap: 8px;
+    padding: 4px 10px;
+  }
+  
+  .brand-icon {
+    font-size: 1.5rem;
+  }
+  
+  .brand-text {
+    font-size: 1.25rem;
+  }
+  
+  .app-main {
+    /* padding: 0.5rem; */
+  }
+}
+
+/* Scrollbar Styling */
+.app-main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.app-main::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.app-main::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.app-main::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .app-shell {
+    background: transparent;
+  }
+  
+  .app-header {
+    background: rgba(0, 0, 0, 0.15);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .app-brand {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .app-brand:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Print styles */
+@media print {
+  .app-header {
+    background: white;
+    border-bottom: 2px solid #333;
+  }
+  
+  .brand-text {
+    background: none;
+    -webkit-text-fill-color: #333;
+    color: #333;
+  }
+}
