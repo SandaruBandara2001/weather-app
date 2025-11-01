@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCities } from "../store/cities";
 import { getWeatherById, type WeatherData } from "../api/weather";
 import "./City.css";
+import { getWeatherIcon } from "../utils/weatherIcons";
 
 export default function City() {
   const nav = useNavigate();
@@ -44,7 +45,9 @@ export default function City() {
                   ←
                 </button>
                 <div className="city-time-info">
-                  <div className="city-name">{w?.name ?? city?.name ?? "Colombo, LK"}</div>
+                  <div className="city-name">
+                    {w ? `${w.name}${w.country ? `, ${w.country}` : ''}` : city?.name ?? "Colombo, LK"}
+                  </div>
                   <div className="time-date">{w?.time ?? "9.19am, Feb 8"}</div>
                 </div>
                 <div className="spacer"></div>
@@ -53,7 +56,10 @@ export default function City() {
               {/* Second Row - 2 Columns */}
               <div className="top-second-row">
                 <div className="weather-condition-column">
-                  <div className="weather-condition">{w?.description ?? "Few Clouds"}</div>
+                  <div className="weather-condition">
+                    <span className="weather-icon">{getWeatherIcon(w?.condition)}</span>
+                    {w?.condition ?? "Few Clouds"}
+                  </div>
                 </div>
                 
                 <div className="vertical-line"></div>

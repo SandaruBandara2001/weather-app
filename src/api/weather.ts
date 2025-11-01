@@ -4,6 +4,7 @@ import axios from "axios";
 /** Data your cards/detail pages render */
 export type WeatherData = {
   name: string;
+  country: string;          // Country code (e.g., "LK", "US", "GB")
   condition: string;        // e.g. "Clouds"
   description: string;      // e.g. "few clouds"
   temp: number;             // °C
@@ -93,6 +94,7 @@ export async function getWeatherById(id: number, force = false): Promise<Weather
     const tz = data.timezone ?? 0;
     const result: WeatherData = {
       name: data.name,
+      country: data.sys?.country || "",  // ✅ Added country code
       condition: data.weather?.[0]?.main ?? "",
       description: data.weather?.[0]?.description ?? "",
       temp: Math.round(data.main?.temp),
@@ -154,4 +156,10 @@ export async function findCityIdByName(q: string): Promise<{ id: number; name: s
     id: Number(w.data.id),
     name: `${hit.name}${hit.country ? ", " + hit.country : ""}`,
   };
+}
+
+// ✅ Optional: Helper function to format city name with country
+export function formatCityCountry(cityName: string, countryCode: string): string {
+  if (!countryCode) return cityName;
+  return `${cityName}, ${countryCode}`;
 }

@@ -4,6 +4,8 @@ import { useCities } from "../store/cities";
 import type { City } from "../store/cities";
 import { getWeatherById, type WeatherData } from "../api/weather";
 import "./CityCard.css";
+import { getWeatherIcon } from "../utils/weatherIcons";
+
 
 
 export default function CityCard({
@@ -44,10 +46,15 @@ export default function CityCard({
           <div className="city-info-column">
             <div className="city-header">
               <div className="city-info">
-                <h3 className="city-name">{w?.name ?? city.name}</h3>
+                <div className="city-name">
+                    {w ? `${w.name}${w.country ? `, ${w.country}` : ''}` : city?.name ?? "Loading..."}
+                  </div>
                 <div className="city-meta">
                   <span className="city-time">{w?.time ?? "9.19am, Feb 8"}</span>
-                  <span className="city-condition">{w?.condition ?? "Few Clouds"}</span>
+                  <span className="city-condition">
+                  <span className="weather-icon">{getWeatherIcon(w?.condition)}</span>
+                  {w?.condition ?? "Few Clouds"}
+                  </span>
                 </div>
               </div>
             </div>
