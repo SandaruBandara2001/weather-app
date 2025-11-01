@@ -12,12 +12,9 @@ export type WeatherData = {
   pressure: number;         // hPa
   humidity: number;         // %
   visibility: number;       // km
-  sunrise: string;          // local time string
-  sunset: string;           // local time string
-  time: string;             // local date+time ("9:19 AM, Feb 8")
-  // If you later want wind in UI, uncomment:
-  // windSpeed?: number;     // m/s
-  // windDeg?: number;       // degrees
+  sunrise: string;          // local time string (12h)
+  sunset: string;           // local time string (12h)
+  time: string;             // local date+time (12h, e.g. "9:19 AM, Feb 8")
 };
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY as string;
@@ -39,14 +36,26 @@ const storage = {
   },
 };
 
-/** format times using API timezone offset (seconds) */
+/** format times using API timezone offset (seconds) — forced 12h clock */
 function formatTime(unixSec: number, tzOffsetSec: number, withDate = false) {
   const localMs =
     (unixSec + tzOffsetSec) * 1000 - new Date().getTimezoneOffset() * 60000;
   const d = new Date(localMs);
-  return withDate
-    ? d.toLocaleString([], { hour: "numeric", minute: "2-digit", day: "numeric", month: "short" })
-    : d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+
+  if (withDate) {
+    return d.toLocaleString(undefined, {
+      day: "numeric",
+      month: "short",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  }
+  return d.toLocaleTimeString(undefined, {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
 }
 
 // ---------- tiny cache ----------
@@ -95,8 +104,6 @@ export async function getWeatherById(id: number, force = false): Promise<Weather
       sunrise: formatTime(Number(data.sys?.sunrise), tz),
       sunset: formatTime(Number(data.sys?.sunset), tz),
       time: formatTime(Number(data.dt), tz, true),
-      // windSpeed: Number(data.wind?.speed) || undefined,
-      // windDeg: Number(data.wind?.deg) || undefined,
     };
 
     cacheSet(cacheKey, result);
